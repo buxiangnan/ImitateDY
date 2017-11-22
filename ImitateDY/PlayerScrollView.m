@@ -21,7 +21,7 @@
 
 @implementation PlayerScrollView
 
-#pragma -- lazy load
+#pragma mark -- lazy load
 
 - (NSMutableArray *)videoItemArray{
     if(!_videoItemArray){
@@ -98,9 +98,38 @@
     return self;
 }
 
-
 - (void)updateForvideoItemArray:(NSMutableArray *)videoItemArray withCurrentIndex:(NSInteger)index{
-    
+    if(videoItemArray.count && [videoItemArray firstObject]){
+        [self.videoItemArray removeAllObjects];
+        [self.videoItemArray addObjectsFromArray:videoItemArray];
+        self.currentIndex = index;
+        self.previousIndex = index;
+        
+        _upItem = [[VideoModel alloc] init];
+        _middleItem = (VideoModel *)_videoItemArray[_currentIndex];
+        _downItem = [[VideoModel alloc] init];
+        
+        if (_currentIndex == 0) {
+            _upItem = (VideoModel *)[_videoItemArray lastObject];
+        } else {
+            _upItem = (VideoModel *)_videoItemArray[_currentIndex - 1];
+        }
+        if (_currentIndex == videoItemArray.count - 1) {
+            _downItem = (VideoModel *)[_videoItemArray firstObject];
+        } else {
+            _downItem = (VideoModel *)_videoItemArray[_currentIndex + 1];
+        }
+        
+        //load image
+        [self prepareForImageView:self.upImageView withLive:_upItem];
+        [self prepareForImageView:self.middleImageView withLive:_middleItem];
+        [self prepareForImageView:self.downImageView withLive:_downItem];
+        
+        //load video
+        [self prepareForVideo:self.upPlayer withLive:_upItem];
+        [self prepareForVideo:self.middlePlayer withLive:_middleItem];
+        [self prepareForVideo:self.downPlayer withLive:_downItem];
+    }
 }
 
 //预备载入内容
@@ -118,5 +147,10 @@
     [player prepareToPlay];
 }
 
+#pragma mark -- TODO
+//3个播放器实例切换
+- (void)switchPlaye:(UIScrollView *)scrollView{
+    
+}
 
 @end
