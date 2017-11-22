@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MainViewController.h
 //  ImitateDY
 //
 //  Created by YangWei on 2017/11/22.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface MainViewController : UIViewController
 
+@property (nonatomic, strong) NSMutableArray *videoList;
 
 @end
-

@@ -1,0 +1,46 @@
+//  PrefixHeader.pch
+//  Created by yangwei on 16/8/18.
+//  Copyright © 2016年 ywwill. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+//property属性快速声明
+
+#define PropertyString(s)@property(nonatomic,copy)NSString * s
+
+#define PropertyNSInteger(s)@property(nonatomic,assign)NSIntegers
+
+#define PropertyFloat(s)@property(nonatomic,assign)floats
+
+#define PropertyLongLong(s)@property(nonatomic,assign)long long s
+
+#define PropertyNSDictionary(s)@property(nonatomic,strong)NSDictionary * s
+
+#define PropertyNSArray(s)@property(nonatomic,strong)NSArray * s
+
+#define PropertyNSMutableArray(s)@property(nonatomic,strong)NSMutableArray * s
+
+//获取屏幕宽高
+
+#define KScreenWidth [[UIScreen mainScreen]bounds].size.width
+
+#define KScreenHeight [[UIScreen mainScreen]bounds].size.height
+
+#define kScreen_Bounds [UIScreen mainScreen].bounds
+
+//强弱引用
+
+#define kWeakSelf(type)__weak typeof(type)weak##type = type;
+
+#define kStrongSelf(type)__strong typeof(type)type = weak##type;
+
+//输出
+#ifdef DEBUG
+#define YWLog(...) NSLog(@"%s 第%d行 \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])
+#else
+#define YWLog(...)
+#endif
+
+#endif

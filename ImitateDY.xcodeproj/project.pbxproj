@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		3D024E3969CC360126B35180 /* libPods-ImitateDY.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9061B4A6015090566D69D959 /* libPods-ImitateDY.a */; };
 		44F49A111FC56C4900E52CE5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F49A101FC56C4900E52CE5 /* AppDelegate.m */; };
-		44F49A141FC56C4900E52CE5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F49A131FC56C4900E52CE5 /* ViewController.m */; };
 		44F49A171FC56C4900E52CE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44F49A151FC56C4900E52CE5 /* Main.storyboard */; };
 		44F49A191FC56C4900E52CE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44F49A181FC56C4900E52CE5 /* Assets.xcassets */; };
 		44F49A1C1FC56C4900E52CE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44F49A1A1FC56C4900E52CE5 /* LaunchScreen.storyboard */; };
 		44F49A1F1FC56C4900E52CE5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F49A1E1FC56C4900E52CE5 /* main.m */; };
 		44F49A291FC56C4900E52CE5 /* ImitateDYUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F49A281FC56C4900E52CE5 /* ImitateDYUITests.m */; };
+		44F49A351FC57D2000E52CE5 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F49A341FC57D2000E52CE5 /* MainViewController.m */; };
+		44F49A391FC5837D00E52CE5 /* VideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F49A381FC5837D00E52CE5 /* VideoModel.m */; };
 		C5F04B3D40F0A2630A67F9A6 /* libPods-ImitateDYUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48BD032F634DFF9888CAB24 /* libPods-ImitateDYUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -34,8 +35,6 @@
 		44F49A0C1FC56C4900E52CE5 /* ImitateDY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImitateDY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44F49A0F1FC56C4900E52CE5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		44F49A101FC56C4900E52CE5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		44F49A121FC56C4900E52CE5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		44F49A131FC56C4900E52CE5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		44F49A161FC56C4900E52CE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		44F49A181FC56C4900E52CE5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44F49A1B1FC56C4900E52CE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -44,6 +43,11 @@
 		44F49A241FC56C4900E52CE5 /* ImitateDYUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImitateDYUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44F49A281FC56C4900E52CE5 /* ImitateDYUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImitateDYUITests.m; sourceTree = "<group>"; };
 		44F49A2A1FC56C4900E52CE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44F49A331FC57D2000E52CE5 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		44F49A341FC57D2000E52CE5 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		44F49A361FC57E3400E52CE5 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = SOURCE_ROOT; };
+		44F49A371FC5837D00E52CE5 /* VideoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoModel.h; sourceTree = "<group>"; };
+		44F49A381FC5837D00E52CE5 /* VideoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoModel.m; sourceTree = "<group>"; };
 		745D023DC6C3B5E2058CB026 /* Pods-ImitateDY.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImitateDY.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImitateDY/Pods-ImitateDY.debug.xcconfig"; sourceTree = "<group>"; };
 		9061B4A6015090566D69D959 /* libPods-ImitateDY.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ImitateDY.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		907EAEBDEB284D6B7D587C70 /* Pods-ImitateDY.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImitateDY.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImitateDY/Pods-ImitateDY.release.xcconfig"; sourceTree = "<group>"; };
@@ -115,13 +119,16 @@
 			children = (
 				44F49A0F1FC56C4900E52CE5 /* AppDelegate.h */,
 				44F49A101FC56C4900E52CE5 /* AppDelegate.m */,
-				44F49A121FC56C4900E52CE5 /* ViewController.h */,
-				44F49A131FC56C4900E52CE5 /* ViewController.m */,
+				44F49A331FC57D2000E52CE5 /* MainViewController.h */,
+				44F49A341FC57D2000E52CE5 /* MainViewController.m */,
+				44F49A371FC5837D00E52CE5 /* VideoModel.h */,
+				44F49A381FC5837D00E52CE5 /* VideoModel.m */,
 				44F49A151FC56C4900E52CE5 /* Main.storyboard */,
 				44F49A181FC56C4900E52CE5 /* Assets.xcassets */,
 				44F49A1A1FC56C4900E52CE5 /* LaunchScreen.storyboard */,
 				44F49A1D1FC56C4900E52CE5 /* Info.plist */,
 				44F49A1E1FC56C4900E52CE5 /* main.m */,
+				44F49A361FC57E3400E52CE5 /* PrefixHeader.pch */,
 			);
 			path = ImitateDY;
 			sourceTree = "<group>";
@@ -336,9 +343,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44F49A141FC56C4900E52CE5 /* ViewController.m in Sources */,
 				44F49A1F1FC56C4900E52CE5 /* main.m in Sources */,
+				44F49A351FC57D2000E52CE5 /* MainViewController.m in Sources */,
 				44F49A111FC56C4900E52CE5 /* AppDelegate.m in Sources */,
+				44F49A391FC5837D00E52CE5 /* VideoModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +499,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7Q3FN28VDH;
+				GCC_PREFIX_HEADER = /Users/yangwei/dev/Project/ImitateDY/PrefixHeader.pch;
 				INFOPLIST_FILE = ImitateDY/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = will.Notification.ImitateDY;
@@ -506,6 +515,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7Q3FN28VDH;
+				GCC_PREFIX_HEADER = /Users/yangwei/dev/Project/ImitateDY/PrefixHeader.pch;
 				INFOPLIST_FILE = ImitateDY/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = will.Notification.ImitateDY;
