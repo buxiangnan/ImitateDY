@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VideoModel.h"
 
 @interface MainViewController : UIViewController
-
 @property (nonatomic, strong) NSMutableArray *videoList;
-
+@property (nonatomic, strong) VideoModel *videoItem;
+@property (nonatomic, assign) NSInteger index;
 @end

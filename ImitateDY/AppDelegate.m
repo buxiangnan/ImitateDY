@@ -49,6 +49,8 @@
     }
     
     MainVC.videoList = videoArray;
+    MainVC.videoItem = videoArray[0];
+    MainVC.index = 0;//初始化为第一个
     
     self.window.rootViewController = MainVC;
     
