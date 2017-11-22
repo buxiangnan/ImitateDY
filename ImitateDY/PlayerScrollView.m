@@ -33,6 +33,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if(self){
+        //set scrollView
         self.contentSize = CGSizeMake(0, frame.size.height * 3);
         self.contentOffset = CGPointMake(0, frame.size.height);
         self.pagingEnabled = YES;
@@ -41,9 +42,9 @@
         self.showsHorizontalScrollIndicator = NO;
         self.showsVerticalScrollIndicator = NO;
         self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        
         self.delegate = self;
         
+        //上下滑动时的图片预览
         self.upImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         self.middleImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, frame.size.height, frame.size.width, frame.size.height)];
         self.downImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, frame.size.height*2, frame.size.width, frame.size.height)];
@@ -98,10 +99,10 @@
     return self;
 }
 
-- (void)updateForvideoItemArray:(NSMutableArray *)videoItemArray withCurrentIndex:(NSInteger)index{
-    if(videoItemArray.count && [videoItemArray firstObject]){
+- (void)updateForvideoItemArray:(NSMutableArray *)itemArray withCurrentIndex:(NSInteger)index{
+    if(itemArray.count && [itemArray firstObject]){
         [self.videoItemArray removeAllObjects];
-        [self.videoItemArray addObjectsFromArray:videoItemArray];
+        [self.videoItemArray addObjectsFromArray:itemArray];
         self.currentIndex = index;
         self.previousIndex = index;
         
@@ -114,7 +115,7 @@
         } else {
             _upItem = (VideoModel *)_videoItemArray[_currentIndex - 1];
         }
-        if (_currentIndex == videoItemArray.count - 1) {
+        if (_currentIndex == itemArray.count - 1) {
             _downItem = (VideoModel *)[_videoItemArray firstObject];
         } else {
             _downItem = (VideoModel *)_videoItemArray[_currentIndex + 1];
@@ -147,10 +148,129 @@
     [player prepareToPlay];
 }
 
-#pragma mark -- TODO
+#pragma mark -- 播放器切换
+
 //3个播放器实例切换
-- (void)switchPlaye:(UIScrollView *)scrollView{
-    
+- (void)switchPlayer:(UIScrollView*)scrollView{
+    CGFloat offset = scrollView.contentOffset.y;
+    if (self.videoItemArray.count) {
+        if (offset >= 2 * self.frame.size.height){
+            // slides to the down player
+            scrollView.contentOffset = CGPointMake(0, self.frame.size.height);
+            _currentIndex++;
+            self.upImageView.image = self.middleImageView.image;
+            self.middleImageView.image = self.downImageView.image;
+            
+            if (self.upPlayer.view.frame.origin.y == 0) {//移动到最下面
+                self.upPlayer.view.frame = CGRectMake(0, KScreenHeight * 2, KScreenWidth, KScreenHeight);
+            }else{//位置向上移动一个屏幕的高度
+                self.upPlayer.view.frame = CGRectMake(0, self.upPlayer.view.frame.origin.y - KScreenHeight, KScreenWidth, KScreenHeight);
+            }
+            
+            if (self.middlePlayer.view.frame.origin.y == 0) {//移动到最下面
+                self.middlePlayer.view.frame = CGRectMake(0, KScreenHeight * 2, KScreenWidth, KScreenHeight);
+            }else{//位置向上移动一个屏幕的高度
+                self.middlePlayer.view.frame = CGRectMake(0, self.middlePlayer.view.frame.origin.y - KScreenHeight, KScreenWidth, KScreenHeight);
+            }
+            
+            if (_currentIndex == self.videoItemArray.count - 1){
+                _downItem = [self.videoItemArray firstObject];
+            } else if(_currentIndex == self.videoItemArray.count){
+                _downItem = self.videoItemArray[1];
+                _currentIndex = 0;
+            } else{
+                _downItem = self.videoItemArray[_currentIndex+1];
+            }
+            
+            [self prepareForImageView:self.downImageView withLive:_downItem];
+            
+            if (self.downPlayer.view.frame.origin.y == 0) {//移动到最下面
+                self.downPlayer.view.frame = CGRectMake(0, KScreenHeight * 2, KScreenWidth, KScreenHeight);
+            }else{//位置向上移动一个屏幕的高度
+                self.downPlayer.view.frame = CGRectMake(0, self.downPlayer.view.frame.origin.y - KScreenHeight, KScreenWidth, KScreenHeight);
+            }
+            
+            if (self.upPlayer.view.frame.origin.y == KScreenHeight * 2) {
+                [self prepareForVideo:self.upPlayer withLive:_downItem];
+            }
+            if (self.middlePlayer.view.frame.origin.y == KScreenHeight * 2) {
+                [self prepareForVideo:self.middlePlayer withLive:_downItem];
+            }
+            if (self.downPlayer.view.frame.origin.y == KScreenHeight * 2) {
+                [self prepareForVideo:self.downPlayer withLive:_downItem];
+            }
+            
+            if (_previousIndex == _currentIndex) {
+                return;
+            }
+            
+            if ([self.playerDelegate respondsToSelector:@selector(playerScrollView:currentPlayerIndex:)]) {
+                [self.playerDelegate playerScrollView:self currentPlayerIndex:_currentIndex];
+                _previousIndex = _currentIndex;
+                YWLog(@"当前scrollView的index: %ld",_currentIndex);
+            }
+        }else if (offset <= 0){
+            
+            scrollView.contentOffset = CGPointMake(0, self.frame.size.height);
+            _currentIndex--;
+            self.downImageView.image = self.middleImageView.image;
+            
+            if (self.downPlayer.view.frame.origin.y == 2 * KScreenHeight) {
+                self.downPlayer.view.frame = CGRectMake(0, KScreenHeight * 0, KScreenWidth, KScreenHeight);
+            }else{
+                self.downPlayer.view.frame = CGRectMake(0, self.downPlayer.view.frame.origin.y + KScreenHeight, KScreenWidth, KScreenHeight);
+            }
+            
+            self.middleImageView.image = self.upImageView.image;
+            
+            if (self.middlePlayer.view.frame.origin.y == 2 * KScreenHeight) {
+                self.middlePlayer.view.frame = CGRectMake(0, KScreenHeight * 0, KScreenWidth, KScreenHeight);
+            }else{
+                self.middlePlayer.view.frame = CGRectMake(0, self.middlePlayer.view.frame.origin.y + KScreenHeight, KScreenWidth, KScreenHeight);
+            }
+
+            if (_currentIndex == 0){
+                _upItem = [self.videoItemArray lastObject];
+                
+            } else if (_currentIndex == -1){
+                _upItem = self.videoItemArray[self.videoItemArray.count - 2];
+                _currentIndex = self.videoItemArray.count-1;
+            } else{
+                _upItem = self.videoItemArray[_currentIndex - 1];
+            }
+            [self prepareForImageView:self.upImageView withLive:_upItem];
+            
+            if (self.upPlayer.view.frame.origin.y == 2 * KScreenHeight) {
+                self.upPlayer.view.frame = CGRectMake(0, KScreenHeight * 0, KScreenWidth, KScreenHeight);
+            }else{
+                self.upPlayer.view.frame = CGRectMake(0, self.upPlayer.view.frame.origin.y + KScreenHeight, KScreenWidth, KScreenHeight);
+            }
+            
+            if (self.upPlayer.view.frame.origin.y == 0 ) {
+                [self prepareForVideo:self.upPlayer withLive:_upItem];
+            }
+            if (self.middlePlayer.view.frame.origin.y == 0 ) {
+                [self prepareForVideo:self.middlePlayer withLive:_upItem];
+            }
+            if (self.downPlayer.view.frame.origin.y == 0 ) {
+                [self prepareForVideo:self.downPlayer withLive:_upItem];
+            }
+            
+            if (_previousIndex == _currentIndex) {
+                return;
+            }
+            if ([self.playerDelegate respondsToSelector:@selector(playerScrollView:currentPlayerIndex:)]) {
+                [self.playerDelegate playerScrollView:self currentPlayerIndex:_currentIndex];
+                _previousIndex = _currentIndex;
+                YWLog(@"current index is: %ld",_currentIndex);
+            }
+        }
+    }
+}
+
+#pragma mark -- UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self switchPlayer:scrollView];
 }
 
 @end
