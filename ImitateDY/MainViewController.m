@@ -12,8 +12,8 @@
 
 @interface MainViewController () <PlayerScrollViewDelegate>
 
-@property (nonatomic , strong) KSYMoviePlayerController* player;
-@property (nonatomic , strong) PlayerScrollView* playerScrollView;
+//@property (nonatomic, strong) KSYMoviePlayerController *player;
+@property (nonatomic, strong) PlayerScrollView *playerScrollView;
 
 @end
 
@@ -31,12 +31,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.view setBackgroundColor:[UIColor clearColor]];
+    //[self initVideoData];
     [self initUI];
+    [self.navigationController setNavigationBarHidden:YES];
     [self initPlayer];
-    
-    //左划相机
-    //UISwipeGestureRecognizer *swipeGesture = [UISwipeGestureRecognizer alloc] initWithTarget:self action:<#(nullable SEL)#>;
 }
 
 -(void) initUI{
@@ -44,6 +43,56 @@
     self.playerScrollView.playerDelegate = self;
     [self.view addSubview:self.playerScrollView];
 }
+
+- (void)pausePlay{
+    if (self.playerScrollView.upPlayer.view.frame.origin.y == KScreenHeight) {
+        [self.playerScrollView.upPlayer pause];
+    }
+    if (self.playerScrollView.middlePlayer.view.frame.origin.y == KScreenHeight) {
+        [self.playerScrollView.middlePlayer pause];
+    }
+    if (self.playerScrollView.downPlayer.view.frame.origin.y == KScreenHeight) {
+        [self.playerScrollView.downPlayer pause];
+    }
+}
+- (void)startPlay{
+    if (self.playerScrollView.upPlayer.view.frame.origin.y == KScreenHeight) {
+        [self.playerScrollView.upPlayer play];
+    }
+    if (self.playerScrollView.middlePlayer.view.frame.origin.y == KScreenHeight) {
+        [self.playerScrollView.middlePlayer play];
+    }
+    if (self.playerScrollView.downPlayer.view.frame.origin.y == KScreenHeight) {
+        [self.playerScrollView.downPlayer play];
+    }
+}
+//- (void)initVideoData{
+//
+//    NSMutableArray* videoArray = [NSMutableArray array];
+//
+//    NSArray* imageSourceArray = [NSArray arrayWithObjects:
+//                                 @"http://ksy.fffffive.com/mda-hinp1ik37b0rt1mj/mda-hinp1ik37b0rt1mj.jpg",
+//                                 @"http://ksy.fffffive.com/mda-himtqzs2un1u8x2v/mda-himtqzs2un1u8x2v.jpg",
+//                                 @"http://ksy.fffffive.com/mda-hiw5zixc1ghpgrhn/mda-hiw5zixc1ghpgrhn.jpg",
+//                                 @"http://ksy.fffffive.com/mda-hiw61ic7i4qkcvmx/mda-hiw61ic7i4qkcvmx.jpg",nil];
+//
+//    NSArray* videoSourceArray = [NSArray arrayWithObjects:
+//                                 @"http://ksy.fffffive.com/mda-hinp1ik37b0rt1mj/mda-hinp1ik37b0rt1mj.mp4",
+//                                 @"http://ksy.fffffive.com/mda-himtqzs2un1u8x2v/mda-himtqzs2un1u8x2v.mp4",
+//                                 @"http://ksy.fffffive.com/mda-hiw5zixc1ghpgrhn/mda-hiw5zixc1ghpgrhn.mp4",
+//                                 @"http://ksy.fffffive.com/mda-hiw61ic7i4qkcvmx/mda-hiw61ic7i4qkcvmx.mp4",nil];
+//
+//    for(int i = 0; i < videoSourceArray.count; i++){
+//        VideoModel *model = [[VideoModel alloc] init];
+//        model.videoURL = videoSourceArray[i];
+//        model.coverImageURL = imageSourceArray[i];
+//        [videoArray addObject:model];
+//    }
+//
+//    self.videoList = videoArray;
+//    self.videoItem = videoArray[0];
+//    self.index = 0;//初始化为第一个
+//}
 
 -(void) initPlayer{
     [[NSNotificationCenter defaultCenter]addObserver:self
@@ -55,10 +104,6 @@
                                                 name:(MPMediaPlaybackIsPreparedToPlayDidChangeNotification)
                                               object:nil];
 }
-
-//- (void)swipeCameraVC:(UISwipeGestureRecognizer *)sender{
-//
-//}
 
 -(void)handlePlayerPreparedToPlayNotify:(NSNotification*)notify{
     

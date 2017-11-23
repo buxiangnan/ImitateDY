@@ -13,4 +13,8 @@
 @property (nonatomic, strong) NSMutableArray *videoList;
 @property (nonatomic, strong) VideoModel *videoItem;
 @property (nonatomic, assign) NSInteger index;
+
+- (void)pausePlay;
+- (void)startPlay;
+
 @end

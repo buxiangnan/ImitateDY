@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3D024E3969CC360126B35180 /* libPods-ImitateDY.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9061B4A6015090566D69D959 /* libPods-ImitateDY.a */; };
+		44B79F2A1FC67877006AE280 /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B79F291FC67877006AE280 /* ContainerViewController.m */; };
+		44B79F2D1FC69752006AE280 /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B79F2C1FC69752006AE280 /* RightViewController.m */; };
 		44F49A111FC56C4900E52CE5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F49A101FC56C4900E52CE5 /* AppDelegate.m */; };
 		44F49A191FC56C4900E52CE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44F49A181FC56C4900E52CE5 /* Assets.xcassets */; };
 		44F49A1C1FC56C4900E52CE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44F49A1A1FC56C4900E52CE5 /* LaunchScreen.storyboard */; };
@@ -32,6 +34,10 @@
 /* Begin PBXFileReference section */
 		0EEE0DA2E9F745E6CF9B5D41 /* Pods-ImitateDYUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImitateDYUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImitateDYUITests/Pods-ImitateDYUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2A177CAC7E827970AEB2B12A /* Pods-ImitateDYUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImitateDYUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImitateDYUITests/Pods-ImitateDYUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		44B79F281FC67877006AE280 /* ContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
+		44B79F291FC67877006AE280 /* ContainerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
+		44B79F2B1FC69752006AE280 /* RightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RightViewController.h; sourceTree = "<group>"; };
+		44B79F2C1FC69752006AE280 /* RightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RightViewController.m; sourceTree = "<group>"; };
 		44F49A0C1FC56C4900E52CE5 /* ImitateDY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImitateDY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44F49A0F1FC56C4900E52CE5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		44F49A101FC56C4900E52CE5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -120,8 +126,12 @@
 			children = (
 				44F49A0F1FC56C4900E52CE5 /* AppDelegate.h */,
 				44F49A101FC56C4900E52CE5 /* AppDelegate.m */,
+				44B79F281FC67877006AE280 /* ContainerViewController.h */,
+				44B79F291FC67877006AE280 /* ContainerViewController.m */,
 				44F49A331FC57D2000E52CE5 /* MainViewController.h */,
 				44F49A341FC57D2000E52CE5 /* MainViewController.m */,
+				44B79F2B1FC69752006AE280 /* RightViewController.h */,
+				44B79F2C1FC69752006AE280 /* RightViewController.m */,
 				44F49A3A1FC586DD00E52CE5 /* PlayerScrollView.h */,
 				44F49A3B1FC586DD00E52CE5 /* PlayerScrollView.m */,
 				44F49A371FC5837D00E52CE5 /* VideoModel.h */,
@@ -344,8 +354,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44B79F2D1FC69752006AE280 /* RightViewController.m in Sources */,
 				44F49A1F1FC56C4900E52CE5 /* main.m in Sources */,
 				44F49A351FC57D2000E52CE5 /* MainViewController.m in Sources */,
+				44B79F2A1FC67877006AE280 /* ContainerViewController.m in Sources */,
 				44F49A111FC56C4900E52CE5 /* AppDelegate.m in Sources */,
 				44F49A3C1FC586DD00E52CE5 /* PlayerScrollView.m in Sources */,
 				44F49A391FC5837D00E52CE5 /* VideoModel.m in Sources */,
