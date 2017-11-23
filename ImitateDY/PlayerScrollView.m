@@ -21,7 +21,7 @@
 
 @implementation PlayerScrollView
 
-#pragma mark -- lazy load
+#pragma mark -- lazy loading
 
 - (NSMutableArray *)videoItemArray{
     if(!_videoItemArray){
@@ -115,30 +115,30 @@
         } else {
             _upItem = (VideoModel *)_videoItemArray[_currentIndex - 1];
         }
-        if (_currentIndex == itemArray.count - 1) {
+        if (_currentIndex == _videoItemArray.count - 1) {
             _downItem = (VideoModel *)[_videoItemArray firstObject];
         } else {
             _downItem = (VideoModel *)_videoItemArray[_currentIndex + 1];
         }
         
         //load image
-        [self prepareForImageView:self.upImageView withLive:_upItem];
-        [self prepareForImageView:self.middleImageView withLive:_middleItem];
-        [self prepareForImageView:self.downImageView withLive:_downItem];
+        [self prepareForImageView:self.upImageView withModel:_upItem];
+        [self prepareForImageView:self.middleImageView withModel:_middleItem];
+        [self prepareForImageView:self.downImageView withModel:_downItem];
         
         //load video
-        [self prepareForVideo:self.upPlayer withLive:_upItem];
-        [self prepareForVideo:self.middlePlayer withLive:_middleItem];
-        [self prepareForVideo:self.downPlayer withLive:_downItem];
+        [self prepareForVideo:self.upPlayer withModel:_upItem];
+        [self prepareForVideo:self.middlePlayer withModel:_middleItem];
+        [self prepareForVideo:self.downPlayer withModel:_downItem];
     }
 }
 
 //预备载入内容
-- (void) prepareForImageView: (UIImageView *)imageView withLive:(VideoModel *)model{
+- (void) prepareForImageView: (UIImageView *)imageView withModel:(VideoModel *)model{
     [imageView sd_setImageWithURL:[NSURL URLWithString:model.coverImageURL]];
 }
 
-- (void) prepareForVideo: (KSYMoviePlayerController *)player withLive:(VideoModel *)model{
+- (void) prepareForVideo:(KSYMoviePlayerController *)player withModel:(VideoModel *)model{
     [player reset:false];
     [player setUrl:[NSURL URLWithString:model.videoURL]];
     [player setShouldAutoplay:false];
@@ -155,7 +155,7 @@
     CGFloat offset = scrollView.contentOffset.y;
     if (self.videoItemArray.count) {
         if (offset >= 2 * self.frame.size.height){
-            // slides to the down player
+            
             scrollView.contentOffset = CGPointMake(0, self.frame.size.height);
             _currentIndex++;
             self.upImageView.image = self.middleImageView.image;
@@ -179,10 +179,10 @@
                 _downItem = self.videoItemArray[1];
                 _currentIndex = 0;
             } else{
-                _downItem = self.videoItemArray[_currentIndex+1];
+                _downItem = self.videoItemArray[_currentIndex + 1];
             }
             
-            [self prepareForImageView:self.downImageView withLive:_downItem];
+            [self prepareForImageView:self.downImageView withModel:_downItem];
             
             if (self.downPlayer.view.frame.origin.y == 0) {//移动到最下面
                 self.downPlayer.view.frame = CGRectMake(0, KScreenHeight * 2, KScreenWidth, KScreenHeight);
@@ -191,13 +191,13 @@
             }
             
             if (self.upPlayer.view.frame.origin.y == KScreenHeight * 2) {
-                [self prepareForVideo:self.upPlayer withLive:_downItem];
+                [self prepareForVideo:self.upPlayer withModel:_downItem];
             }
             if (self.middlePlayer.view.frame.origin.y == KScreenHeight * 2) {
-                [self prepareForVideo:self.middlePlayer withLive:_downItem];
+                [self prepareForVideo:self.middlePlayer withModel:_downItem];
             }
             if (self.downPlayer.view.frame.origin.y == KScreenHeight * 2) {
-                [self prepareForVideo:self.downPlayer withLive:_downItem];
+                [self prepareForVideo:self.downPlayer withModel:_downItem];
             }
             
             if (_previousIndex == _currentIndex) {
@@ -238,7 +238,7 @@
             } else{
                 _upItem = self.videoItemArray[_currentIndex - 1];
             }
-            [self prepareForImageView:self.upImageView withLive:_upItem];
+            [self prepareForImageView:self.upImageView withModel:_upItem];
             
             if (self.upPlayer.view.frame.origin.y == 2 * KScreenHeight) {
                 self.upPlayer.view.frame = CGRectMake(0, KScreenHeight * 0, KScreenWidth, KScreenHeight);
@@ -247,13 +247,13 @@
             }
             
             if (self.upPlayer.view.frame.origin.y == 0 ) {
-                [self prepareForVideo:self.upPlayer withLive:_upItem];
+                [self prepareForVideo:self.upPlayer withModel:_upItem];
             }
             if (self.middlePlayer.view.frame.origin.y == 0 ) {
-                [self prepareForVideo:self.middlePlayer withLive:_upItem];
+                [self prepareForVideo:self.middlePlayer withModel:_upItem];
             }
             if (self.downPlayer.view.frame.origin.y == 0 ) {
-                [self prepareForVideo:self.downPlayer withLive:_upItem];
+                [self prepareForVideo:self.downPlayer withModel:_upItem];
             }
             
             if (_previousIndex == _currentIndex) {

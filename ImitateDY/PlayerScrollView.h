@@ -13,7 +13,6 @@
 @protocol PlayerScrollViewDelegate <NSObject>
 
 - (void)playerScrollView:(PlayerScrollView *)playerScrollView currentPlayerIndex:(NSInteger)index;
-
 @end
 
 @interface PlayerScrollView : UIScrollView
