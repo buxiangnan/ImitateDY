@@ -25,22 +25,37 @@
     [self.window makeKeyAndVisible];
     
     MainViewController *MainVC = [[MainViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:MainVC];
+    [nav setNavigationBarHidden:YES];
     
     NSMutableArray* videoArray = [NSMutableArray array];
     
-    //视频数据源
-    NSArray* videoSourceArray = [NSArray arrayWithObjects:
-                            @"http://p3.pstatp.com/large/483b0003893b819e39b9.jpeg",
-                            @"http://p3.pstatp.com/large/39890001423bad8a5938.jpeg",
-                            @"http://p3.pstatp.com/large/486500101dc27621ce40.jpeg",
-                            @"http://p3.pstatp.com/large/4858000b4654bb6d884e.jpeg",nil];
-    //图片数据源
     NSArray* imageSourceArray = [NSArray arrayWithObjects:
-                            @"http://v9-dy.ixigua.com/bca729a327d8dab4549a1fea1c9dd5db/5a15481b/video/m/22079d4ac76247b496f9ce39d4f006e38d411526b5d0000efb1970db7f2/",
-                            @"http://v3-dy.ixigua.com/90c96ff2609da84f63ce66f01863bd62/5a154812/video/m/2204bd78bc1f7184838afb519aa58020fc8115135da00003ba82195ec49/",
-                            @"http://v1-dy.ixigua.com/0d4d4d0a69329870af26017c69007333/5a154807/video/m/220b0ddc32d46b14983a6de54d8542d69bc11526d3d0000b47fd32de9c9/",
-                            @"http://v6-dy.ixigua.com/video/m/220da50ee9df839421291000b7af6cd24b411526d4c0000026b2dad9f79/?Expires=1511348312&AWSAccessKeyId=qh0h9TdcEMoS2oPj7aKX&Signature=xw%2BkUQkpUSbKxJG8Dnt6KIKVqhw%3D",nil];
-    
+                                     @"http://ksy.fffffive.com/mda-hinp1ik37b0rt1mj/mda-hinp1ik37b0rt1mj.jpg",
+                                     @"http://ksy.fffffive.com/mda-himtqzs2un1u8x2v/mda-himtqzs2un1u8x2v.jpg",
+                                     @"http://ksy.fffffive.com/mda-hiw5zixc1ghpgrhn/mda-hiw5zixc1ghpgrhn.jpg",
+                                     @"http://ksy.fffffive.com/mda-hiw61ic7i4qkcvmx/mda-hiw61ic7i4qkcvmx.jpg",nil];
+
+    NSArray* videoSourceArray = [NSArray arrayWithObjects:
+                                 @"http://ksy.fffffive.com/mda-hinp1ik37b0rt1mj/mda-hinp1ik37b0rt1mj.mp4",
+                                 @"http://ksy.fffffive.com/mda-himtqzs2un1u8x2v/mda-himtqzs2un1u8x2v.mp4",
+                                 @"http://ksy.fffffive.com/mda-hiw5zixc1ghpgrhn/mda-hiw5zixc1ghpgrhn.mp4",
+                                 @"http://ksy.fffffive.com/mda-hiw61ic7i4qkcvmx/mda-hiw61ic7i4qkcvmx.mp4",nil];
+
+    //图片数据源
+//    NSArray *imageSourceArray = [NSArray arrayWithObjects:
+//                            @"http://p3.pstatp.com/large/483b0003893b819e39b9.jpeg",
+//                            @"http://p3.pstatp.com/large/39890001423bad8a5938.jpeg",
+//                            @"http://p3.pstatp.com/large/486500101dc27621ce40.jpeg",
+//                            @"http://p3.pstatp.com/large/4858000b4654bb6d884e.jpeg",nil];
+//
+//    //视频数据源
+//    NSArray* videoSourceArray = [NSArray arrayWithObjects:
+//                            @"http://v9-dy.ixigua.com/bca729a327d8dab4549a1fea1c9dd5db/5a15481b/video/m/22079d4ac76247b496f9ce39d4f006e38d411526b5d0000efb1970db7f2/",
+//                            @"http://v3-dy.ixigua.com/90c96ff2609da84f63ce66f01863bd62/5a154812/video/m/2204bd78bc1f7184838afb519aa58020fc8115135da00003ba82195ec49/",
+//                            @"http://v1-dy.ixigua.com/0d4d4d0a69329870af26017c69007333/5a154807/video/m/220b0ddc32d46b14983a6de54d8542d69bc11526d3d0000b47fd32de9c9/",
+//                            @"http://v6-dy.ixigua.com/video/m/220da50ee9df839421291000b7af6cd24b411526d4c0000026b2dad9f79/?Expires=1511348312&AWSAccessKeyId=qh0h9TdcEMoS2oPj7aKX&Signature=xw%2BkUQkpUSbKxJG8Dnt6KIKVqhw%3D",nil];
+
     for(int i = 0; i < videoSourceArray.count; i++){
         VideoModel *model = [[VideoModel alloc] init];
         model.videoURL = videoSourceArray[i];
@@ -52,7 +67,7 @@
     MainVC.videoItem = videoArray[0];
     MainVC.index = 0;//初始化为第一个
     
-    self.window.rootViewController = MainVC;
+    self.window.rootViewController = nav;
     
     return YES;
 }
